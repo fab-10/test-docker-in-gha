@@ -1,0 +1,24 @@
+name: gradle
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build 
+        run: ./release.sh
+
+      - name: Upload
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
+        with:
+          name: native-linux-arm64-cross-compile
+          path: native-linux-arm64-cross-compile
